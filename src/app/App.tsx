@@ -1,19 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Stuff from './Stuff/Stuff';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Stuff from './pages/Stuff/Stuff';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <p>moin-tschüss-app</p>
-      <Link to="/">moin</Link>
-      <br />
-      <Link to="/bye">tschüss</Link>
       <Routes>
-        <Route path="/" element={<p>hello</p>} />
-        <Route path="/bye" element={<p>bye</p>} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/Stuff">
-          <Route path=":stuff" element={<Stuff />} />
+          <Route path=":chosenThing" element={<Stuff />} />
         </Route>
       </Routes>
     </BrowserRouter>
