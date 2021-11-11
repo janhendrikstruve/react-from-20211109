@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CardDetailed from '../../components/CardDetailed/CardDetailed';
 import type { Thing } from '../../types';
+import { useNavigate } from 'react-router-dom';
 
 export default function Stuff(): JSX.Element {
+  const navigate = useNavigate();
   const { chosenThing } = useParams();
-  console.log(chosenThing);
   const [thing, setThings] = useState<Thing | null>(null);
 
   useEffect(() => {
@@ -20,18 +21,25 @@ export default function Stuff(): JSX.Element {
     fetchedthings();
   }, []);
 
+  function navigateBack(event: { preventDefault: () => void }) {
+    event.preventDefault();
+    navigate('/');
+  }
+
   if (thing) {
-    console.log('card found');
     return (
-      <CardDetailed
-        key={thing.name}
-        title={thing.name}
-        description={thing.description}
-        cardTags={thing.categories}
-      ></CardDetailed>
+      <>
+        <button onClick={navigateBack}>Back</button>
+        <CardDetailed
+          id={thing.id}
+          key={thing.id}
+          title={thing.name}
+          description={thing.description}
+          cardTags={thing.categories}
+        ></CardDetailed>
+      </>
     );
   } else {
-    console.log('no card found');
     return <></>;
   }
 }

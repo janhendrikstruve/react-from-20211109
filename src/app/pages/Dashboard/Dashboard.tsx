@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CardDetailed from '../..//components/CardDetailed/CardDetailed';
+import Card from '../..//components/Card/Card';
 import type { Thing } from '../../types';
 
 export default function Dashboard(): JSX.Element {
@@ -19,12 +19,12 @@ export default function Dashboard(): JSX.Element {
       <h1>moin</h1>
       {things &&
         things.map((thing) => (
-          <CardDetailed
+          <Card
+            id={thing.id}
             key={thing.id}
             title={thing.name}
             description={thing.description}
-            cardTags={thing.categories}
-          ></CardDetailed>
+          ></Card>
         ))}
     </main>
   );

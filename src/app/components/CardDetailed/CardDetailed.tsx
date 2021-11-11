@@ -1,32 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../Button/Button';
 import Tag from '../Tag/Tag';
+import { Link } from 'react-router-dom';
 
 type cardProps = {
   title: string;
   description: string;
   cardTags?: string[];
+  id: number;
 };
 
-export default function Card({
+export default function CardDetailed({
   title,
   description,
   cardTags,
+  id,
 }: cardProps): JSX.Element {
   return (
-    <StyledCard>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <Button>more details</Button>
-      {cardTags?.map((tag) => (
-        <Tag children={tag}></Tag>
-      ))}
-    </StyledCard>
+    <section>
+      <StyledLink to={`/stuff/${id}`}>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        {cardTags?.map((tag) => (
+          <Tag children={tag}></Tag>
+        ))}
+      </StyledLink>
+    </section>
   );
 }
 
-const StyledCard = styled.section`
+const StyledLink = styled(Link)`
   display: grid;
   border: 4px solid steelblue;
   padding: 0.5em;
