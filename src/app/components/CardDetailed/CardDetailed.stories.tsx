@@ -1,15 +1,15 @@
 import React from 'react';
-import Card from './Card';
+import CardDetailed from './CardDetailed';
 
 export default {
-  title: 'Component/Card',
-  component: Card,
+  title: 'Component/CardDetailed',
+  component: CardDetailed,
 };
 
 export const standard = (): JSX.Element => (
-  <Card
+  <CardDetailed
     title={'I am a freaking Card'}
     description={'Do not mess around with me man'}
-    id={1}
-  ></Card>
+    cardTags={['coolest']}
+  ></CardDetailed>
 );
