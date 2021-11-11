@@ -1,13 +1,12 @@
 import React from 'react';
-import Tag from '../Tag/Tag';
 import styled from 'styled-components';
-import type { ReactNode } from 'react';
 import Button from '../Button/Button';
+import Tag from '../Tag/Tag';
 
 type cardProps = {
   title: string;
   description: string;
-  cardTags?: ReactNode[];
+  cardTags?: string[];
 };
 
 export default function Card({
@@ -19,12 +18,10 @@ export default function Card({
     <StyledCard>
       <h2>{title}</h2>
       <p>{description}</p>
-      <StyledList>
-        {cardTags?.map((tag) => (
-          <Tag children={tag} />
-        ))}
-      </StyledList>
-      <Button>less details</Button>
+      <Button>more details</Button>
+      {cardTags?.map((tag) => (
+        <Tag children={tag}></Tag>
+      ))}
     </StyledCard>
   );
 }
@@ -36,11 +33,4 @@ const StyledCard = styled.section`
   border-radius: 8px;
   background-color: lightblue;
   justify-items: center;
-`;
-
-const StyledList = styled.ul`
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0;
-  flex-wrap: wrap;
 `;
